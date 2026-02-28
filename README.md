@@ -26,5 +26,4 @@ by red.
 The map is interactive and can be zoomed in/out by the user. It also
 features a panel where the user can select which base map they prefer.
 For more information on each datapoint, simply click the point. Here is
-my
-[map](file:///Users/emma-bethpeters/Desktop/GIT/Honours_Jasper/GIS/Honours_GIS/map.html).
+my [map](https://emmabethp.github.io/Honours_GIS/map.html).
