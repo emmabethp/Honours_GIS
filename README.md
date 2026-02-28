@@ -27,3 +27,9 @@ The map is interactive and can be zoomed in/out by the user. It also
 features a panel where the user can select which base map they prefer.
 For more information on each datapoint, simply click the point. Here is
 my [map](https://emmabethp.github.io/Honours_GIS/map.html).
+
+And here is a teaser of what it looks like:
+
+And here is a teaser of what it looks like:
+
+![Map preview](map_image.png)
