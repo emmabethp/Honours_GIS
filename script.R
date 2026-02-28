@@ -1,10 +1,13 @@
 ## Code for Jasper's GIS module project
 ## using GIS to create a map of honeyguide guiding locations
 
-############### Load packages and clean Data
+############### Load packages and clean point Data
 
 #load packages
-library(readr) ; library(sf) ; library(terra) ; library(raster) ; library(tmap) ; library(tidyverse) ; library(rosm) ; library(ggspatial) ; library(ggplot2) ; library(leaflet)
+library(readr) ; library(sf) ; library(terra) ;
+library(raster) ; library(tmap) ; library(tidyverse) ;
+library(rosm) ; library(ggspatial) ; library(ggplot2) ;
+library(leaflet) ; library(prettymapr) ; library(htmltools)
 
 #read in data
 #setwd("~/Desktop/GIT/Honours_Jasper/GIS/Honours_GIS")
@@ -36,9 +39,40 @@ data[cols2] <- lapply(data[cols2], as.numeric)
 #note, that the times are now in seconds since 1970
 
 #change GPS coords into tidy format (also changes dataset to a spatial object)
-data_sf <- st_as_sf(data, coords = c("beetree_lon", "beetree_lat"), crs = 4326)
+trees <- st_as_sf(data, coords = c("beetree_lon", "beetree_lat"), crs = 4326)
 
-###############
+#examine trees dataset
+class(trees)
+head(trees)
 
-############### 
+#check CRS 
+st_crs(trees) #EPSG:4326 
 
+#change CRS to better Mozambique CRS 
+trees <- st_transform(trees, crs = "EPSG:32737")
+
+#subset by attribute: guided to bees or other animal
+trees$animal_found <- ifelse(trees$bee == "apis", "Apis", "Other")
+
+
+
+#plot using leaflet
+trees <- st_transform(trees, 4326) #first transfer crs to work with leaflet
+pal <- colorFactor(palette = c("green", "red"),
+                   domain = trees$animal_found) #then add colour palette
+leaflet(data = trees_ll) %>%
+  addProviderTiles(providers$Esri.WorldTopoMap) %>%
+  addCircleMarkers(
+    radius = 4,
+    fillColor = ~pal(animal_found),
+    color = "black",
+    weight = 1,
+    fillOpacity = 0.9,
+    popup = ~animal_found
+  ) %>%
+  addLegend(
+    "bottomright",
+    colors = c("green", "red"),
+    labels = c("Bees", "Other"),
+    title = "Animal Found"
+  )
