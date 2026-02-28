@@ -1,8 +1,6 @@
 ## Code for Jasper's GIS module project
 ## using GIS to create a map of honeyguide guiding locations
 
-############### Load packages and clean point Data
-
 #load packages
 library(readr) ; library(sf) ; library(terra) ;
 library(raster) ; library(tmap) ; library(tidyverse) ;
@@ -15,7 +13,6 @@ data <- read_csv("data/data_clean copy.csv")
 #View(data)
 
 #chnage classes of some columns
-
 #change to factor: group, guide_sex, bee, harvested, treeID 
 cols1 <- c("group", 
            "guide_sex", 
@@ -41,38 +38,54 @@ data[cols2] <- lapply(data[cols2], as.numeric)
 #change GPS coords into tidy format (also changes dataset to a spatial object)
 trees <- st_as_sf(data, coords = c("beetree_lon", "beetree_lat"), crs = 4326)
 
-#examine trees dataset
-class(trees)
-head(trees)
+#call apis= bee
+trees$bee <- recode(trees$bee, "apis" = "Bees")
 
 #check CRS 
-st_crs(trees) #EPSG:4326 
-
-#change CRS to better Mozambique CRS 
-trees <- st_transform(trees, crs = "EPSG:32737")
+st_crs(trees) #EPSG:4326, correct for leaflet map
 
 #subset by attribute: guided to bees or other animal
-trees$animal_found <- ifelse(trees$bee == "apis", "Apis", "Other")
+trees$animal_found <- ifelse(trees$bee == "Bees", "Bees", "Other")
 
-
+#add colour palette
+pal <- colorFactor(palette = c("green", "red"), domain = trees$animal_found) 
 
 #plot using leaflet
-trees <- st_transform(trees, 4326) #first transfer crs to work with leaflet
-pal <- colorFactor(palette = c("green", "red"),
-                   domain = trees$animal_found) #then add colour palette
-leaflet(data = trees_ll) %>%
-  addProviderTiles(providers$Esri.WorldTopoMap) %>%
+leaflet(data = trees) %>%
+  addProviderTiles(
+    providers$Esri.WorldTopoMap,
+    group = "Esri World Topographic Map"
+  ) %>%
+  addProviderTiles(
+    providers$Esri.WorldImagery,
+    group = "Satellite Image"
+  ) %>%
+  addProviderTiles(
+    providers$OpenTopoMap,
+    group = "OSM and SRTM Topographic Map"
+  ) %>%
   addCircleMarkers(
     radius = 4,
     fillColor = ~pal(animal_found),
     color = "black",
     weight = 1,
-    fillOpacity = 0.9,
-    popup = ~animal_found
+    fillOpacity = 0.75,
+    popup = ~paste(
+      "<strong>Animal:</strong>", bee, "<br/>",
+      "<strong>Date:</strong>", date, "<br/>",
+      "<strong>Guide Age:</strong>", guide_age, "<br/>",
+      "<strong>Guide Sex:</strong>", guide_sex, "<br/>",
+      "<strong>Guiding Distance (m):</strong>", follow_trackdist, "<br/>",
+      "<strong>Guiding Time (mins):</strong>", round(guiding_totaltime,2), "<br/>"
+    )
   ) %>%
   addLegend(
     "bottomright",
     colors = c("green", "red"),
     labels = c("Bees", "Other"),
     title = "Animal Found"
+  ) %>%
+addLayersControl(
+  baseGroups = c("Esri Topographic Map", "Satellite Image", "OSM and SRTM Topographic Map"),
+  options = layersControlOptions(collapsed = FALSE)
   )
