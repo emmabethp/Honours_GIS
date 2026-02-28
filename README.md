@@ -29,7 +29,4 @@ For more information on each datapoint, simply click the point. Here is
 my [map](https://emmabethp.github.io/Honours_GIS/map.html).
 
 And here is a teaser of what it looks like:
-
-And here is a teaser of what it looks like:
-
 ![Map preview](map_image.png)
