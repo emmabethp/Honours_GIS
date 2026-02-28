@@ -5,7 +5,7 @@
 library(readr) ; library(sf) ; library(terra) ;
 library(raster) ; library(tmap) ; library(tidyverse) ;
 library(rosm) ; library(ggspatial) ; library(ggplot2) ;
-library(leaflet) ; library(prettymapr) ; library(htmltools)
+library(leaflet) ; library(prettymapr) ; library(htmltools); library(htmlwidgets)
 
 #read in data
 #setwd("~/Desktop/GIT/Honours_Jasper/GIS/Honours_GIS")
@@ -51,7 +51,7 @@ trees$animal_found <- ifelse(trees$bee == "Bees", "Bees", "Other")
 pal <- colorFactor(palette = c("green", "red"), domain = trees$animal_found) 
 
 #plot using leaflet
-leaflet(data = trees) %>%
+map <- leaflet(data = trees) %>%
   addProviderTiles(
     providers$Esri.WorldTopoMap,
     group = "Esri World Topographic Map"
@@ -89,3 +89,6 @@ addLayersControl(
   baseGroups = c("Esri Topographic Map", "Satellite Image", "OSM and SRTM Topographic Map"),
   options = layersControlOptions(collapsed = FALSE)
   )
+
+#save map
+saveWidget(map, "map.html", selfcontained = TRUE)
