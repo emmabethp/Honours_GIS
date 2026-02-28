@@ -1,0 +1,31 @@
+# Metadata
+
+
+## Introduction
+
+The data I have used is from David Lloyd-Jones’s github repository that
+includes all of the data and code he used for his 2025 PhD thesis
+entitled “Cooperation, ecology and behaviour in the honeyguide-human
+mutualism”, and for his article “To bees or not to bees: greater
+honeyguides sometimes guide humans to animals other than bees, but
+likely not as punishment”. His repository is available
+[here](https://github.com/dlloyd-jones/guiding_to_non_bees).
+
+The data I used is contained
+[here](https://github.com/emmabethp/Honours_Data_Management/tree/main/data).
+It consists of 24 honey hunts with complete GPS tracks of guiding
+interactions recorded between May 18 and June 27, 2018. Twenty of these
+honey hunts ended with the honey hunter finding bees, and four ended
+with the honey hunter finding an animal other than bees. The variable
+names for this data set are explained
+[here](https://github.com/emmabethp/Honours_Data_Management/blob/main/data/variable_names.csv).
+
+My code is contained in these two files: one for [data
+wrangling](https://github.com/emmabethp/Honours_Data_Management/blob/main/code/data_wrangling.R)
+and another for [data
+visualisation](https://github.com/emmabethp/Honours_Data_Management/blob/main/code/visualisations.R).
+
+All plots for analyses can be viewed
+[here](https://github.com/emmabethp/Honours_Data_Management/blob/main/code/visualisations.R),
+otherwise a few important figures are shown
+[here](https://github.com/emmabethp/Honours_Data_Management/tree/main#).

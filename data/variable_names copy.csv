@@ -1,0 +1,26 @@
+Variable Name;Definition
+date;Date of the year guiding interaction occurred on
+group;Guided to bees (B) or guided to animals other than bees (A)
+guide_age;Age class of guiding honeyguide: 4 = Adult, 3 = Adult with a few yearling feathers remaining, 1 = Juvenile in its first year, and unk = unknown
+bee;species of bee guided to (where known): apis = Apis mellifera 
+harvested;Whether or not the bees' nest was harvested and a reward left for honeyguides
+treeID;Unique identifier for the bees' nest or animal guided to
+follow_GPStrackID;Identifier for gpx. track from the relevant guiding interaction
+audio_trackID;Identifier for audio wav. track from the relevant guiding interaction
+audio_start_indication;Start time (UTC+2) for honeyguide 'indication' calls (if relevant)
+audio_finish_woo;End time for guiding interaction when honey-hunter spots bees or animal and calls in the recording
+indication_to_woo;Time from start of indication calls to when human calls woo
+beetree_lat;Latitude in decimal degrees of bee tree
+beetree_lon;Longitude in decimal degrees of bee tree
+guiding_starttime;Time at start of guiding interaction
+finalphasecalls_time;Time when indications calls begin (if relevant)
+foundtree_time;Time that tree is found 
+dist_fp_start_to_bees;Distance in a straight line or 'as-the-crow-flies' meters between when then final phase or 'indication' calls started and where the bees were located (if found) 
+followdist_crowfly;Distance in straight line or 'as-the-crow-flies' meters between start and end points of a guiding interaction
+follow_trackdist;Distance in meters of the track recorded while following a honeyguide
+GPSguiding_starttime;Timestamp (UTC+2) of the first point of the gpx. track
+GPSguiding_endtime;Timestamp (UTC+2) of the last point of the gpx. track
+
+avg_speed_kph;Average moving speed of the human carrying the GPS when following the honeyguide
+
+
