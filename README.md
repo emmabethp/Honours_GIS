@@ -11,7 +11,7 @@ entitled “Cooperation, ecology and behaviour in the honeyguide-human
 mutualism”, and for his article “To bees or not to bees: greater
 honeyguides sometimes guide humans to animals other than bees, but
 likely not as punishment”. His repository is available
-[here](https://github.com/dlloyd-jones/guiding_to_non_bees).
+[here](https://github.com/dlloyd-jones/guiding_to_non_bees). The base maps are directly from the opensource R package "osm".
 
 ## The Map
 
