@@ -15,18 +15,19 @@ likely not as punishment”. His repository is available
 
 ## The Map
 
+I aimed to create an interactive map that compares the locations of destinations and outcomes of honey hunts in Niassa, Mozambique.
 The map I produced plots the locations of trees that honeyguides guided
 human honey-hunters to. In some cases, the honeyguides guided to
 beehives, while in others they guided to other, sometimes dangerous,
 animals. Research into this phenomenon by David Lloyd-Jones can be read
 [here](https://onlinelibrary.wiley.com/doi/full/10.1002/ece3.71136). On
-my map, bee destinations are shown by green markers, and other animals
+my map, beehive destinations are shown by green markers, and other animals
 by red.
 
 The map is interactive and can be zoomed in/out by the user. It also
 features a panel where the user can select which base map they prefer.
-For more information on each datapoint, simply click the point. Here is
+For more information on each datapoint (including honeyguide sex and age, as well as how long and how far the hunt was), simply click the point. Here is
 my [map](https://emmabethp.github.io/Honours_GIS/map.html).
 
-And here is a teaser of what it looks like:
+And here is a snapshot of what it looks like:
 ![Map preview](map_image.png)
