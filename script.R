@@ -38,6 +38,11 @@ data[cols2] <- lapply(data[cols2], as.numeric)
 #change GPS coords into tidy format (also changes dataset to a spatial object)
 trees <- st_as_sf(data, coords = c("beetree_lon", "beetree_lat"), crs = 4326)
 
+#crop the data to only include mozambique
+ext <- c(30.0, -27.0, 41.0, -10.0) #block of Moz
+names(ext) <- c("xmin", "ymin", "xmax", "ymax") #Give vector names
+trees <- st_crop(trees, ext) 
+
 #call apis= bee
 trees$bee <- recode(trees$bee, "apis" = "Bees")
 
@@ -89,6 +94,9 @@ addLayersControl(
   baseGroups = c("Esri Topographic Map", "Satellite Image", "OSM and SRTM Topographic Map"),
   options = layersControlOptions(collapsed = FALSE)
   )
+
+#view map
+map
 
 #save map
 saveWidget(map, "map.html", selfcontained = TRUE)
